@@ -49,21 +49,29 @@ function AnnouncementScreen({ navigation, route }: AnnouncementScreenProps) {
          </View>
 
          <View style={styles.rowTwo}>
-            <Text style={{ fontSize: 19, fontWeight: "600" }}>Informations :</Text>
-            <Text>Prix : {announcement?.price}</Text>
-            <Text>Année de fabrication : {announcement?.carModelYear}</Text>
+            <Text style={{ fontSize: 19, fontWeight: "600",  }}>Informations :</Text>
+            <Text style={styles.info}>Prix : {announcement?.price}</Text>
+            <Text style={styles.info}>Année de fabrication : {announcement?.carModelYear}</Text>
          </View>
          
          <View style={styles.rowThree}>
-            <Text style={{ fontSize: 19, fontWeight: "600" }}>Vendeur :</Text>
-            <Image source={{ uri: announcement?.avatar }} style={styles.avatar} />
-            <Text>{announcement?.saler}</Text>
-            <Text>Pays : {announcement?.country}</Text>
-            <Text>Ville: {announcement?.city}</Text>
-            <Text>Tél: {announcement?.phone}</Text>
+            <Text style={styles.vendeurText}>Vendeur :</Text>
+            <View style={styles.vendeurInfoContainer}>
+               <View style={styles.avatarContainer}>
+                     <Image source={{ uri: announcement?.avatar }} style={styles.avatar} />
+               </View>
+               <View style={styles.infoContainer}>
+                     <Text style={styles.saler}>{announcement?.saler}</Text>
+                     <View style={styles.infoRow}>
+                        <Text style={styles.infoText}>Pays : {announcement?.country}</Text>
+                        <Text style={styles.infoText}>Ville : {announcement?.city}</Text>
+                        <Text style={styles.infoText}>Tél : {announcement?.phone}</Text>
+                     </View>
+               </View>
+            </View>
          </View>
 
-         <View style={styles.rowThree}>
+         <View style={styles.rowFour}>
             <Text style={{ fontSize: 19, fontWeight: "600" }}>Description :</Text>
             <Text>{announcement?.description}</Text>
          </View>
@@ -87,28 +95,59 @@ const styles = StyleSheet.create({
       flex: 1,
    },
    rowOne: {
-      flex: 2,
+      flex: 3,
       justifyContent: "center",
       alignItems: "center",
       flexDirection: "row"
    },
    rowTwo: {
-      flex: 2,
-   },
-   rowThree: {
-      flex: 4,
+      flex: 3,
    },
    rowFour: {
-      flex: 4,
+      flex: 3,
    },
    rowFive: {
       flex: 3,
       justifyContent: "center",
       alignItems: "center",
    },
+   info : {
+      margin: 10
+   },
+   rowThree: {
+      flex: 3,
+       flexDirection: 'column',
+       alignItems: 'flex-start',
+   },
+   vendeurText: {
+       fontSize: 19,
+       fontWeight: "600",
+       marginBottom: 10,
+   },
+   vendeurInfoContainer: {
+       flexDirection: 'row',
+       alignItems: 'center',
+   },
+   avatarContainer: {
+       marginRight: 3,
+   },
    avatar: {
-      width: 50, 
-      height: 50, 
-      borderRadius: 25, 
-  },
+       width: 60, 
+       height: 60, 
+       borderRadius: 25, 
+   },
+   infoContainer: {
+       flexDirection: 'column',
+   },
+   saler: {
+       fontSize: 19,
+       fontWeight: "600",
+       marginBottom: 5,
+   },
+   infoRow: {
+       flexDirection: 'row',
+   },
+   infoText: {
+       marginRight: 10,
+   },
 });
