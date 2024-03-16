@@ -1,7 +1,7 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import { getAnnouncementById } from "../services/AnnouncementService";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import MyButton from "../components/Atoms/MyButton";
 import { useDispatch, useSelector } from "react-redux";
 import { GlobalStoreProps } from "../store/globalStore";
@@ -56,8 +56,11 @@ function AnnouncementScreen({ navigation, route }: AnnouncementScreenProps) {
          
          <View style={styles.rowThree}>
             <Text style={{ fontSize: 19, fontWeight: "600" }}>Vendeur :</Text>
+            <Image source={{ uri: announcement?.avatar }} style={styles.avatar} />
             <Text>{announcement?.saler}</Text>
-            <Text>Année de fabrication : {announcement?.carModelYear}</Text>
+            <Text>Pays : {announcement?.country}</Text>
+            <Text>Ville: {announcement?.city}</Text>
+            <Text>Tél: {announcement?.phone}</Text>
          </View>
 
          <View style={styles.rowThree}>
@@ -90,7 +93,7 @@ const styles = StyleSheet.create({
       flexDirection: "row"
    },
    rowTwo: {
-      flex: 4,
+      flex: 2,
    },
    rowThree: {
       flex: 4,
@@ -99,8 +102,13 @@ const styles = StyleSheet.create({
       flex: 4,
    },
    rowFive: {
-      flex: 4,
+      flex: 3,
       justifyContent: "center",
       alignItems: "center",
-   }
+   },
+   avatar: {
+      width: 50, 
+      height: 50, 
+      borderRadius: 25, 
+  },
 });
