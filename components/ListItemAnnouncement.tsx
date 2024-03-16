@@ -3,33 +3,34 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 import Movie from "../models/Announcement";
 import Colors from "../constants/Colors";
+import Announcement from "../models/Announcement";
 
-type ListItemMovieParams = {
-  movie: Movie
+type ListItemAnnouncementParams = {
+  announcement: Announcement
   onClick : () => void
 }
 
-const ListItemMovie = ({ movie, onClick }: ListItemMovieParams) => {
+const ListItemAnnouncement = ({ announcement, onClick }: ListItemAnnouncementParams) => {
   return (
     <TouchableOpacity onPress={onClick}>
       <View style={styles.informationContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>
-            {movie.title} {movie.voteAverage}
+            {announcement.carMake} {announcement.carModel}
           </Text>
         </View>
         <View>
-          <Text style={styles.cuisine}>{movie.releaseDate}</Text>
+          <Text style={styles.cuisine}>{announcement.carModelYear}</Text>
         </View>
         <View>
-          <Text>{movie.overview}</Text>
+          <Text>{announcement.description}</Text>
         </View>
       </View>
     </TouchableOpacity>
   )
 }
 
-export default ListItemMovie;
+export default ListItemAnnouncement;
 
 const styles = StyleSheet.create({
   container: {

@@ -23,12 +23,12 @@ function RootStack() {
       <SearchNavigation.Screen
         name="Announcement"
         component={MovieScreen}
-        options={{ title: "Film" }}
+        options={{ title: "Annonce" }}
       />
       <SearchNavigation.Screen
         name="Favoris"
         component={FavorisScreen}
-        options={{ title: "Mes Favoris" }}
+        options={{ title: "Mes Annonces Favorites" }}
       />
     </SearchNavigation.Navigator>
   );

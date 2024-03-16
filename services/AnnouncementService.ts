@@ -1,6 +1,6 @@
 import Announcement from "../models/Announcement";
 
-export async function getAnnouncement(): Promise<Array<Announcement>> {
+export async function getAnnouncements(): Promise<Array<Announcement>> {
   try {
     const res: Array<Announcement> = [];
 

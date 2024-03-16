@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { GlobalStoreProps } from "../store/globalStore";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import ListItemMovie from "../components/ListItemMovie";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../routes/RootStack";
 import Announcement from "../models/Announcement";
+import ListItemAnnouncement from "../components/ListItemAnnouncement";
 
 
 type Props =  StackScreenProps<RootStackParamList>;
@@ -30,8 +30,8 @@ function FavorisScreen({ navigation }: Props) {
          <FlatList
             data={favoris}
             renderItem={({ item }) => (
-              <ListItemMovie
-                movie={item}
+              <ListItemAnnouncement
+                announcement={item}
                 onClick={() => navigateAnnouncementDetails(item.id)}
               />
             )}

@@ -1,24 +1,24 @@
 import { ReactNode, useEffect, useState } from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
-import ListItemMovie from "./ListItemMovie";
-import Movie from "../models/Announcement";
 import DisplayError from "./DisplayError";
-import { getMovies } from "../services/AnnouncementService";
+import { getAnnouncements } from "../services/AnnouncementService";
+import Announcement from "../models/Announcement";
+import ListItemAnnouncement from "./ListItemAnnouncement";
 
-interface ListOfMovieProps {
-  navigateFilmDetails: (id: number) => void
+interface ListOfAnnouncementProps {
+  navigateAnnouncementDetails: (id: string) => void
 }
 
-function ListOfMovie({navigateFilmDetails}: ListOfMovieProps): ReactNode {
+function ListOfAnnouncement({navigateAnnouncementDetails}: ListOfAnnouncementProps): ReactNode {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
-  const [movies, setMovies] = useState<Array<Movie>>([]);
+  const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
 
   async function fetchMovie(): Promise<void> {
     try {
-      const movies = await getMovies();
-      setMovies(movies);
+      const announcements = await getAnnouncements();
+      setAnnouncements(announcements);
       setIsLoading(false);
     } catch (error) {
       // TODO error handling
@@ -37,13 +37,13 @@ function ListOfMovie({navigateFilmDetails}: ListOfMovieProps): ReactNode {
     <View style={styles.container}>
       {
         isError ?
-          (<DisplayError message='Impossible de récupérer les films' />) :
+          (<DisplayError message='Impossible de récupérer les annonces' />) :
           (<FlatList
-            data={movies}
+            data={announcements}
             renderItem={({ item }) => (
-              <ListItemMovie
-                movie={item}
-                onClick={() => navigateFilmDetails(item.id)}
+              <ListItemAnnouncement
+                announcement={item}
+                onClick={() => navigateAnnouncementDetails(item.id)}
               />
             )}
           />)
@@ -52,7 +52,7 @@ function ListOfMovie({navigateFilmDetails}: ListOfMovieProps): ReactNode {
   );
 }
 
-export default ListOfMovie;
+export default ListOfAnnouncement;
 
 const styles = StyleSheet.create({
   container: {

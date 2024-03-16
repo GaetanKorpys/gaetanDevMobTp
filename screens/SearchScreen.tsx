@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import ListOfMovie from "../components/ListOfMovie";
+import ListOfMovie from "../components/ListOfAnnouncement";
 import { StackScreenProps } from "@react-navigation/stack";
 import MyButton from "../components/Atoms/MyButton";
 import { useSelector } from "react-redux";
@@ -25,7 +25,7 @@ function SearchScreen({ navigation }: Props) {
             <MyButton title={`Mes favoris : ${favoris.length}`} pressed={() => {navigation.navigate('Favoris')}} color={'#43A047'} colorPress={'#2E7D32'} />
          </View>
          <View style={styles.rowTwo}>
-            <ListOfMovie navigateFilmDetails={navigateAnnouncementDetails} />
+            <ListOfMovie navigateAnnouncementDetails={navigateAnnouncementDetails} />
          </View>
       </View>
    );
