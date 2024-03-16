@@ -7,13 +7,27 @@ import ListItemAnnouncement from "./ListItemAnnouncement";
 
 interface ListOfAnnouncementProps {
   navigateAnnouncementDetails: (id: string) => void
+  input: string
+  onUpdateCarNumber: (count: number) => void;
 }
 
-function ListOfAnnouncement({navigateAnnouncementDetails}: ListOfAnnouncementProps): ReactNode {
+function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumber}: ListOfAnnouncementProps): ReactNode {
+
+  console.log("ListOfAnnouncement")
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
+
+  function searchCarFromInput(input: string): void {
+    const filteredAnnouncements = announcements.filter((announcement) =>
+      announcement.carMake.toLowerCase().includes(input.toLowerCase()) ||
+      announcement.carModel.toLowerCase().includes(input.toLowerCase())
+    );
+
+    onUpdateCarNumber(filteredAnnouncements.length);
+    setAnnouncements(filteredAnnouncements);
+  }
 
   async function fetchMovie(): Promise<void> {
     try {
@@ -29,6 +43,10 @@ function ListOfAnnouncement({navigateAnnouncementDetails}: ListOfAnnouncementPro
   useEffect(() => {
     void fetchMovie()
   }, [])
+
+  useEffect(() => {
+    searchCarFromInput(input);
+  }, [input]);
 
   if(isLoading)
     return <Text>Chargement en cours ...</Text>
@@ -59,3 +77,4 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+

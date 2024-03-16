@@ -6,6 +6,7 @@ import { GlobalStoreProps } from "../store/globalStore";
 import { RootStackParamList } from "../routes/RootStack";
 import Announcement from "../models/Announcement";
 import ListOfAnnouncement from "../components/ListOfAnnouncement";
+import { useEffect, useState } from "react";
 
 type Props =  StackScreenProps<RootStackParamList>;
 
@@ -13,10 +14,16 @@ function SearchScreen({ navigation }: Props) {
 
    const favoris = useSelector<GlobalStoreProps, Array<Announcement>>((state) => state.favori);
 
+   const [carNumber, setCarNumber] = useState<number>(0);
+   const [searchValue, setSearchValue] = useState<string>("");
+
    function navigateAnnouncementDetails(id:string) {
       navigation.navigate("Announcement", { announcementId: id });
    };
-  
+
+   const handleSearchChange = (text: string) => {
+      setSearchValue(text);
+   };
 
    return (
       <View style={styles.container}>
@@ -24,11 +31,16 @@ function SearchScreen({ navigation }: Props) {
             <MyButton title={`Mes favoris : ${favoris.length}`} pressed={() => {navigation.navigate('Favoris')}} color={'#43A047'} colorPress={'#2E7D32'} />
          </View>
          <View style={styles.rowTwo}>
-            <TextInput style={styles.input} placeholder="Rechercher un véhicule" />
+         <TextInput 
+               style={styles.input} 
+               placeholder="Rechercher un véhicule" 
+               value={searchValue}
+               onChangeText={handleSearchChange}
+            />
          </View>
          <View style={styles.rowThree}>
-            <Text style={{marginLeft: 13, marginBottom: 5}}>Nombre d'annonces : </Text>
-            <ListOfAnnouncement navigateAnnouncementDetails={navigateAnnouncementDetails} />
+            <Text style={{marginLeft: 13, marginBottom: 5}}>Nombre d'annonces : {carNumber} </Text>
+            <ListOfAnnouncement navigateAnnouncementDetails={navigateAnnouncementDetails} input={searchValue} onUpdateCarNumber={(count) => setCarNumber(count)}/>
          </View>
       </View>
    );
