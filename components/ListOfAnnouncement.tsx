@@ -23,10 +23,12 @@ function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumb
 
   function searchCarFromInput(input: string): void {
 
-    //const filteredAnnouncements = announcements.filter((announcement) =>
+    //const filteredAnnouncements = announcementsCopy.filter((announcement) =>
     // Objectif filtrer sur la liste originale
     // Permet de filtrer correctement si on supprime des champs de la searchBar (fonctionne bien)
-    // Cependant ne filtre rien au départ au chargement ou si on tape dans la searchBar
+    // Si on utilise announcementsCopy, le nombre d'annonce est bien décrémenté
+    // La recherche est aussi correctement update
+    // Cependant problème, la recherche ne trouve rien au départ, pas de véhicule
     // Pas eu le temps de fix
     const filteredAnnouncements = announcements.filter((announcement) =>
       announcement.carMake.toLowerCase().includes(input.toLowerCase()) ||
