@@ -22,7 +22,9 @@ function SearchScreen({ navigation }: Props) {
    };
 
    const handleSearchChange = (text: string) => {
+      console.log("changement recherche" + text)
       setSearchValue(text);
+      console.log("Search Value : " + searchValue)
    };
 
    return (
@@ -39,9 +41,10 @@ function SearchScreen({ navigation }: Props) {
             />
          </View>
          <View style={styles.rowThree}>
-            <Text style={{marginLeft: 13, marginBottom: 5}}>Nombre d'annonces : {carNumber} </Text>
+            <Text style={{marginLeft: 13, marginBottom: 5}}>Nombre d'annonces : <Text style={{fontStyle: 'italic'}}>{carNumber}</Text></Text>
             <ListOfAnnouncement navigateAnnouncementDetails={navigateAnnouncementDetails} input={searchValue} onUpdateCarNumber={(count) => setCarNumber(count)}/>
          </View>
+
       </View>
    );
 }
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
       marginTop: 8
    },
    rowOne: {
-      flex: 1,
+      flex: 2,
       justifyContent: "center",
       alignItems: "center",
    },

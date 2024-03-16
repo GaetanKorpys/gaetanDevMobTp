@@ -6,8 +6,8 @@ import Announcement from "../models/Announcement";
 import ListItemAnnouncement from "./ListItemAnnouncement";
 
 interface ListOfAnnouncementProps {
-  navigateAnnouncementDetails: (id: string) => void
-  input: string
+  navigateAnnouncementDetails: (id: string) => void;
+  input: string;
   onUpdateCarNumber: (count: number) => void;
 }
 
@@ -18,6 +18,8 @@ function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumb
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
+  const [announcementsCopy, setAnnouncementsCopy] = useState<Array<Announcement>>([]);
+
 
   function searchCarFromInput(input: string): void {
     const filteredAnnouncements = announcements.filter((announcement) =>
@@ -29,11 +31,13 @@ function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumb
     setAnnouncements(filteredAnnouncements);
   }
 
-  async function fetchMovie(): Promise<void> {
+  async function fetchAnnouncement(): Promise<void> {
     try {
       const announcements = await getAnnouncements();
       setAnnouncements(announcements);
       setIsLoading(false);
+
+      onUpdateCarNumber(announcements.length);
     } catch (error) {
       // TODO error handling
       setIsError(true)
@@ -41,10 +45,12 @@ function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumb
   }
   
   useEffect(() => {
-    void fetchMovie()
+    void fetchAnnouncement()
+    setAnnouncementsCopy(announcements);
   }, [])
 
   useEffect(() => {
+    console.log("Liste : " + input)
     searchCarFromInput(input);
   }, [input]);
 
