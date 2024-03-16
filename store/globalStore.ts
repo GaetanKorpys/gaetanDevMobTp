@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import favoriReducer from "../reducers/favoriReducer";
-import Movie from "../models/Movie";
+import Movie from "../models/Announcement";
 
 const globalStore = configureStore({
    reducer: {

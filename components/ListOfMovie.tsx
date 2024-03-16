@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useState } from "react";
 import { FlatList, View, StyleSheet, Text } from "react-native";
 import ListItemMovie from "./ListItemMovie";
-import Movie from "../models/Movie";
+import Movie from "../models/Announcement";
 import DisplayError from "./DisplayError";
-import { getMovies } from "../services/MovieService";
+import { getMovies } from "../services/AnnouncementService";
 
 interface ListOfMovieProps {
   navigateFilmDetails: (id: number) => void

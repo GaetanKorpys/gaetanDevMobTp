@@ -1,20 +1,21 @@
 import { View, StyleSheet } from "react-native";
 import ListOfMovie from "../components/ListOfMovie";
 import { StackScreenProps } from "@react-navigation/stack";
-import { RootStackParamList } from "../routes/RootStack";
 import MyButton from "../components/Atoms/MyButton";
 import { useSelector } from "react-redux";
 import { GlobalStoreProps } from "../store/globalStore";
-import Movie from "../models/Movie";
+import Movie from "../models/Announcement";
+import { RootStackParamList } from "../routes/RootStack";
+import Announcement from "../models/Announcement";
 
 type Props =  StackScreenProps<RootStackParamList>;
 
 function SearchScreen({ navigation }: Props) {
 
-   const favoris = useSelector<GlobalStoreProps, Array<Movie>>((state) => state.favori);
+   const favoris = useSelector<GlobalStoreProps, Array<Announcement>>((state) => state.favori);
 
-   function navigateFilmDetails(id:number) {
-      navigation.navigate("Movie", { movieId: id });
+   function navigateAnnouncementDetails(id:string) {
+      navigation.navigate("Announcement", { announcementId: id });
    };
   
 
@@ -24,7 +25,7 @@ function SearchScreen({ navigation }: Props) {
             <MyButton title={`Mes favoris : ${favoris.length}`} pressed={() => {navigation.navigate('Favoris')}} color={'#43A047'} colorPress={'#2E7D32'} />
          </View>
          <View style={styles.rowTwo}>
-            <ListOfMovie navigateFilmDetails={navigateFilmDetails} />
+            <ListOfMovie navigateFilmDetails={navigateAnnouncementDetails} />
          </View>
       </View>
    );

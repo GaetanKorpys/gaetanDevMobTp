@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
 import { GlobalStoreProps } from "../store/globalStore";
-import Movie from "../models/Movie";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import ListItemMovie from "../components/ListItemMovie";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../routes/RootStack";
+import Announcement from "../models/Announcement";
 
 
 type Props =  StackScreenProps<RootStackParamList>;
 
 function FavorisScreen({ navigation }: Props) {
-   const favoris = useSelector<GlobalStoreProps, Array<Movie>>((state) => state.favori);
+   const favoris = useSelector<GlobalStoreProps, Array<Announcement>>((state) => state.favori);
 
-   function navigateFilmDetails(id:number) {
-      navigation.navigate("Movie", { movieId: id });
+   function navigateAnnouncementDetails(id:string) {
+      navigation.navigate("Announcement", { announcementId: id });
    };
   
 
@@ -32,7 +32,7 @@ function FavorisScreen({ navigation }: Props) {
             renderItem={({ item }) => (
               <ListItemMovie
                 movie={item}
-                onClick={() => navigateFilmDetails(item.id)}
+                onClick={() => navigateAnnouncementDetails(item.id)}
               />
             )}
           />

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-import Movie from "../models/Movie";
+import Movie from "../models/Announcement";
 import Colors from "../constants/Colors";
 
 type ListItemMovieParams = {

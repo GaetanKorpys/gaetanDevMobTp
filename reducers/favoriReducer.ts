@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Movie from "../models/Movie";
+import Movie from "../models/Announcement";
 
 interface ActionType {
    payload: Movie;
