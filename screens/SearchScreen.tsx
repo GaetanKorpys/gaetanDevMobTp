@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 import MyButton from "../components/Atoms/MyButton";
 import { useSelector } from "react-redux";
@@ -24,6 +24,10 @@ function SearchScreen({ navigation }: Props) {
             <MyButton title={`Mes favoris : ${favoris.length}`} pressed={() => {navigation.navigate('Favoris')}} color={'#43A047'} colorPress={'#2E7D32'} />
          </View>
          <View style={styles.rowTwo}>
+            <TextInput style={styles.input} placeholder="Rechercher un véhicule" />
+         </View>
+         <View style={styles.rowThree}>
+            <Text style={{marginLeft: 13, marginBottom: 5}}>Nombre d'annonces : </Text>
             <ListOfAnnouncement navigateAnnouncementDetails={navigateAnnouncementDetails} />
          </View>
       </View>
@@ -43,6 +47,20 @@ const styles = StyleSheet.create({
       alignItems: "center",
    },
    rowTwo: {
+      flex: 1,
+      marginVertical: 15,
+   },
+   rowThree: {
       flex: 10,
+   },
+   input: {
+      width: "80%",
+      height: 40,
+      paddingHorizontal: 10,
+      backgroundColor: "#f5f5f5",
+      borderRadius: 20,
+      borderColor: "#ccc",
+      borderWidth: 1,
+      marginLeft: 10,
    },
 });
