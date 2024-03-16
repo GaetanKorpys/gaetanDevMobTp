@@ -20,7 +20,7 @@ const ListItemAnnouncement = ({ announcement, onClick }: ListItemAnnouncementPar
           </Text>
         </View>
         <View>
-          <Text style={styles.cuisine}>{announcement.carModelYear}</Text>
+          <Text style={styles.cuisine}>{announcement.carModelYear} - {announcement.price}</Text>
         </View>
         <View>
           <Text>{announcement.description}</Text>

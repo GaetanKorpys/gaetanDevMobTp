@@ -1,12 +1,11 @@
 import { View, StyleSheet } from "react-native";
-import ListOfMovie from "../components/ListOfAnnouncement";
 import { StackScreenProps } from "@react-navigation/stack";
 import MyButton from "../components/Atoms/MyButton";
 import { useSelector } from "react-redux";
 import { GlobalStoreProps } from "../store/globalStore";
-import Movie from "../models/Announcement";
 import { RootStackParamList } from "../routes/RootStack";
 import Announcement from "../models/Announcement";
+import ListOfAnnouncement from "../components/ListOfAnnouncement";
 
 type Props =  StackScreenProps<RootStackParamList>;
 
@@ -25,7 +24,7 @@ function SearchScreen({ navigation }: Props) {
             <MyButton title={`Mes favoris : ${favoris.length}`} pressed={() => {navigation.navigate('Favoris')}} color={'#43A047'} colorPress={'#2E7D32'} />
          </View>
          <View style={styles.rowTwo}>
-            <ListOfMovie navigateAnnouncementDetails={navigateAnnouncementDetails} />
+            <ListOfAnnouncement navigateAnnouncementDetails={navigateAnnouncementDetails} />
          </View>
       </View>
    );

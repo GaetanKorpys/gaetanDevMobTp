@@ -45,12 +45,27 @@ function AnnouncementScreen({ navigation, route }: AnnouncementScreenProps) {
    return (
       <View style={styles.container}>
          <View style={styles.rowOne}>
-            <Text style={{ fontSize: 24, fontWeight: "600" }}>{announcement?.carMake}</Text>
+            <Text style={{ fontSize: 24, fontWeight: "600" }}>{announcement?.carMake} {announcement?.carModel}</Text>
          </View>
+
          <View style={styles.rowTwo}>
-            <Text style={{ fontSize: 12 }}>More and more details ... .</Text>
+            <Text style={{ fontSize: 19, fontWeight: "600" }}>Informations :</Text>
+            <Text>Prix : {announcement?.price}</Text>
+            <Text>Année de fabrication : {announcement?.carModelYear}</Text>
          </View>
+         
          <View style={styles.rowThree}>
+            <Text style={{ fontSize: 19, fontWeight: "600" }}>Vendeur :</Text>
+            <Text>{announcement?.saler}</Text>
+            <Text>Année de fabrication : {announcement?.carModelYear}</Text>
+         </View>
+
+         <View style={styles.rowThree}>
+            <Text style={{ fontSize: 19, fontWeight: "600" }}>Description :</Text>
+            <Text>{announcement?.description}</Text>
+         </View>
+
+         <View style={styles.rowFive}>
             {favoris.find(m => m.id === announcement?.id) == null ?
                (
                   <MyButton title={"Ajouter au favoris"} pressed={() => dispatch(addFavori(announcement))} color={'#43A047'} colorPress={'#2E7D32'} />
@@ -78,6 +93,12 @@ const styles = StyleSheet.create({
       flex: 4,
    },
    rowThree: {
+      flex: 4,
+   },
+   rowFour: {
+      flex: 4,
+   },
+   rowFive: {
       flex: 4,
       justifyContent: "center",
       alignItems: "center",

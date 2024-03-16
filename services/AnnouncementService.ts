@@ -25,6 +25,7 @@ export async function getAnnouncements(): Promise<Array<Announcement>> {
           city: value.city,
           country : value.country,
           phone: value.phone,
+          avatar: value.avatar,
         }
       )
     });
@@ -61,6 +62,7 @@ export async function getAnnouncementById(id: string): Promise<Announcement | un
           city: value.city,
           country : value.country,
           phone: value.phone,
+          avatar: value.avatar,
         }
       )
     });

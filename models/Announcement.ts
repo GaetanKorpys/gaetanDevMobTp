@@ -9,4 +9,5 @@ export default interface Announcement {
   phone:string;
   country:string;
   city:string;
+  avatar:string;
 }
