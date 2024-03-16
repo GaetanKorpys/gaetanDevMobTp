@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Movie from "../models/Announcement";
+import Announcement from "../models/Announcement";
 
 interface ActionType {
-   payload: Movie;
+   payload: Announcement;
    type: string;
 }
 
 const favoriSlice = createSlice({
    name: "favori",
-   initialState: [] as Array<Movie>,
+   initialState: [] as Array<Announcement>,
    reducers: {         
       // { type: "favori/addFavori", payload: {....}} : ActionType
       addFavori: (state, { payload }: ActionType /* état, action */) => {

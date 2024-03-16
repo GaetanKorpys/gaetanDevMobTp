@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import favoriReducer from "../reducers/favoriReducer";
-import Movie from "../models/Announcement";
+import Announcement from "../models/Announcement";
 
 const globalStore = configureStore({
    reducer: {
@@ -9,7 +9,7 @@ const globalStore = configureStore({
 });
 
 export interface GlobalStoreProps {
-   favori: Array<Movie>;
+   favori: Array<Announcement>;
 }
 
 export default globalStore;
