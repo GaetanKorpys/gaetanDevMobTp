@@ -22,7 +22,7 @@ function ListOfAnnouncement({navigateAnnouncementDetails, input, onUpdateCarNumb
 
 
   function searchCarFromInput(input: string): void {
-    const filteredAnnouncements = announcements.filter((announcement) =>
+    const filteredAnnouncements = announcementsCopy.filter((announcement) =>
       announcement.carMake.toLowerCase().includes(input.toLowerCase()) ||
       announcement.carModel.toLowerCase().includes(input.toLowerCase())
     );
